@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">My Website</title> <!-- Default title -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="bg-primary text-white text-center py-3">
+        <h1>My Website</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navigation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="loadContent('home.html', 'Home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="loadContent('about.html', 'About Us')">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="loadContent('services.html', 'Our Services')">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="loadContent('contact.html', 'Contact Us')">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dynamic Content Section -->
+    <div class="container my-4" id="dynamicContent">
+        <!-- Default content or loading content will be inserted here -->
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to Load Dynamic Content -->
+    <script>
+        function loadContent(page, title) {
+            $("#dynamicContent").load(page, function(response, status, xhr) {
+                if (status == "error") {
+                    $("#dynamicContent").html("<h2>Error: " + xhr.status + " " + xhr.statusText + "</h2>");
+                }
+            });
+            // Change the document title dynamically
+            document.title = title; // Set the document title to the page title
+            document.getElementById('pageTitle').innerText = title; // Update the title element
+        }
+
+        // Load default content on page load
+        $(document).ready(function() {
+            loadContent('home.html', 'Home');  // Load the home page content by default
+        });
+    </script>
+</body>
+</html>
